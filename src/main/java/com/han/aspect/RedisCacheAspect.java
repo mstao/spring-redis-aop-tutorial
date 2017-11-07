@@ -132,12 +132,8 @@ public class RedisCacheAspect {
      * @return 获取到的数据
      * @throws Throwable
      */
-    @Around("execution(* com.han.service..*Impl.insert*(..))" +
-            "|| execution(* com.han.service..*Impl.delete*(..))" +
-            "|| execution(* com.han.service..*Impl.increase*(..))" +
-            "|| execution(* com.han.service..*Impl.decrease*(..))" +
-            "|| execution(* com.han.service..*Impl.complaint(..))" +
-            "|| execution(* com.han.service..*Impl.set*(..))")
+    @Around("execution(* com.han.service..*Impl.delete*(..))" +
+            "|| execution(* com.han.service..*Impl.remove*(..))")
     @SuppressWarnings("rawtypes")
     public Object evictCache(ProceedingJoinPoint pjp) throws Throwable {
         // 得到目标的方法
@@ -160,7 +156,9 @@ public class RedisCacheAspect {
      * 更新缓存的数据
      * @return 新获取的数据
      */
-    @Around("execution(* com.han.service..*Impl.update*(..))")
+    @Around("execution(* com.han.service..*Impl.update*(..))" +
+            "|| execution(* com.han.service..*Impl.insert*(..))" +
+            "|| execution(* com.han.service..*Impl.save*(..))")
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public Object updateCache(ProceedingJoinPoint pjp) throws Throwable {
         // 生成key
@@ -184,7 +182,7 @@ public class RedisCacheAspect {
         // 序列化查询结果
         String jsonStr = serialize(result);
         if (logger.isDebugEnabled()) {
-            logger.debug("Update-->反序列化结果 = {}", result);
+            logger.debug("序列化结果 = {}", result);
         }
 
         // 获取设置的缓存时间
