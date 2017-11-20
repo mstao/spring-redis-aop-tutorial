@@ -78,3 +78,5 @@ if (timeout <= 0) {
     });
 }
 ```
+## 博文地址
+https://mstao.github.io/2017/11/08/%E5%9C%A8%20Spring%20Data%20Redis%E4%B8%AD%E4%BD%BF%E7%94%A8AOP%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98/
