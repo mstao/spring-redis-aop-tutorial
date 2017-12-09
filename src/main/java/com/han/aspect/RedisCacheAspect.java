@@ -292,11 +292,11 @@ public class RedisCacheAspect {
      */
     private Object deserialize(String source, Class<?> clazz, Class<?> modelType) {
         // 判断是否为List
-        if (clazz.isAssignableFrom(List.class)) {
+        if (List.class.isAssignableFrom(Object.class)) {
             return JSON.parseArray(source, modelType);
         }
 
         // 正常反序列化
-        return JSON.parseObject(source, clazz);
+        return JSON.parseObject(source, modelType);
     }
 }
