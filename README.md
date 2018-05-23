@@ -38,7 +38,7 @@ A tutorial for spring-redis with aop.
 ```java
 private Object deserialize(String source, Class<?> clazz, Class<?> modelType) {
         // 判断是否为List
-        if (clazz.isAssignableFrom(List.class)) {
+        if (List.class.isAssignableFrom(clazz)) {
             return JSON.parseArray(source, modelType);
         }
 

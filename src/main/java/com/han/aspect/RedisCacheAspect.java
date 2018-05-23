@@ -292,7 +292,7 @@ public class RedisCacheAspect {
      */
     private Object deserialize(String source, Class<?> clazz, Class<?> modelType) {
         // 判断是否为List
-        if (List.class.isAssignableFrom(Object.class)) {
+        if (List.class.isAssignableFrom(clazz)) {
             return JSON.parseArray(source, modelType);
         }
 
